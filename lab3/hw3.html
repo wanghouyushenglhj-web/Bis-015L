@@ -9,9 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Your Name Here" />
+<meta name="author" content="Hangjun Liu" />
 
-<meta name="date" content="2026-01-12" />
+<meta name="date" content="2026-01-13" />
 
 <title>Homework 3</title>
 
@@ -375,8 +375,8 @@ display: none;
 
 
 <h1 class="title toc-ignore">Homework 3</h1>
-<h4 class="author">Your Name Here</h4>
-<h4 class="date">2026-01-12</h4>
+<h4 class="author">Hangjun Liu</h4>
+<h4 class="date">2026-01-13</h4>
 
 </div>
 
@@ -395,7 +395,7 @@ code chunks to run.</p>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.6
 ## ✔ forcats   1.0.1     ✔ stringr   1.6.0
-## ✔ ggplot2   4.0.1     ✔ tibble    3.3.0
+## ✔ ggplot2   4.0.1     ✔ tibble    3.3.1
 ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.2
 ## ✔ purrr     1.2.1     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -406,31 +406,118 @@ code chunks to run.</p>
 online research.</p>
 <p><strong>1. Make three new vectors that show the name, height in feet,
 and height in meters of the five tallest mountains in the
-world.</strong></p>
+world.</strong> The top 5 highest mountains in the world, all located in
+Asia, are Mount Everest, K2, Kangchenjunga, Lhotse, and Makalu.
+Everest-8848.86m-29031.69feets K2-8611m-28251.31feets
+Kanchenjunga-8586m-28169.29feets lhotse-8516m-27939.63feets
+Makalu-8485m-27837.93feets Data from(Links#<a href="https://extremeguide.pro/en/blogs-en/the-world-s-highest-mountains-top-10-stunning-peaks/" class="uri">https://extremeguide.pro/en/blogs-en/the-world-s-highest-mountains-top-10-stunning-peaks/</a>)</p>
+<pre class="r"><code>mountains_names &lt;- c(&quot;everest&quot;,&quot;k2&quot;,&quot;kanchenjunga&quot;,&quot;lhotse&quot;,&quot;makalu&quot;)
+height_meters &lt;- c(8848.86,8611,8586,8516,8485)
+height_feets &lt;- c(29031.69,28251.31,28169.29,27939.63,27837.93)</code></pre>
 <p><strong>2. Combine these vectors into a data frame called
 <code>mountains</code>.</strong></p>
+<pre class="r"><code>tibble(mountains_names,height_feets,height_meters)</code></pre>
+<pre><code>## # A tibble: 5 × 3
+##   mountains_names height_feets height_meters
+##   &lt;chr&gt;                  &lt;dbl&gt;         &lt;dbl&gt;
+## 1 everest               29032.         8849.
+## 2 k2                    28251.         8611 
+## 3 kanchenjunga          28169.         8586 
+## 4 lhotse                27940.         8516 
+## 5 makalu                27838.         8485</code></pre>
 <p><strong>3. What is the mean height of the mountains in
 feet?</strong></p>
+<pre class="r"><code>mean(height_feets)</code></pre>
+<pre><code>## [1] 28245.97</code></pre>
 <p><strong>4. When were each of these mountains first climbed (i.e. in
 what year)? Make a new vector <code>first_climbed</code> and add it to
 the <code>mountains</code> data frame.</strong></p>
+<pre class="r"><code>first_climbed &lt;- c(1953,1954,1955,1956,1955)</code></pre>
+<pre class="r"><code>tibble(mountains_names,height_feets,height_meters,first_climbed)</code></pre>
+<pre><code>## # A tibble: 5 × 4
+##   mountains_names height_feets height_meters first_climbed
+##   &lt;chr&gt;                  &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+## 1 everest               29032.         8849.          1953
+## 2 k2                    28251.         8611           1954
+## 3 kanchenjunga          28169.         8586           1955
+## 4 lhotse                27940.         8516           1956
+## 5 makalu                27838.         8485           1955</code></pre>
+<pre class="r"><code>mountains &lt;- tibble(mountains_names,height_feets,height_meters,first_climbed)</code></pre>
 <p><strong>5. How many times have each of these mountains been climbed?
 Make a new vector <code>summits</code> and add it to the
 <code>mountains</code> data frame.</strong></p>
+<pre class="r"><code>summits &lt;- c(12800,800,187,900,450)
+mountains&lt;- tibble(mountains_names,height_feets,height_meters,first_climbed,summits)</code></pre>
+<pre class="r"><code>tibble(mountains_names,height_feets,height_meters,first_climbed,summits)</code></pre>
+<pre><code>## # A tibble: 5 × 5
+##   mountains_names height_feets height_meters first_climbed summits
+##   &lt;chr&gt;                  &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+## 1 everest               29032.         8849.          1953   12800
+## 2 k2                    28251.         8611           1954     800
+## 3 kanchenjunga          28169.         8586           1955     187
+## 4 lhotse                27940.         8516           1956     900
+## 5 makalu                27838.         8485           1955     450</code></pre>
 <p><strong>6. Which mountain has the highest number of fatalities? Make
 a new vector <code>fatalities</code> and add it to the
 <code>mountains</code> data frame.</strong></p>
+<pre class="r"><code>fatalities &lt;- c(340,96,50,30,40)</code></pre>
+<pre class="r"><code>mountains&lt;- tibble(mountains_names,height_feets,height_meters,first_climbed,summits,fatalities)</code></pre>
+<pre class="r"><code>tibble(mountains)</code></pre>
+<pre><code>## # A tibble: 5 × 6
+##   mountains_names height_feets height_meters first_climbed summits fatalities
+##   &lt;chr&gt;                  &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1 everest               29032.         8849.          1953   12800        340
+## 2 k2                    28251.         8611           1954     800         96
+## 3 kanchenjunga          28169.         8586           1955     187         50
+## 4 lhotse                27940.         8516           1956     900         30
+## 5 makalu                27838.         8485           1955     450         40</code></pre>
 <p><strong>7. What is the fatality rate (i.e., fatalities divided by
 summits) for each mountain? Create a new vector
 <code>fatality_rate</code> and add it to the <code>mountains</code> data
 frame.</strong></p>
+<pre class="r"><code>fatality_rate &lt;- c(fatalities/summits)</code></pre>
+<pre class="r"><code>mountains &lt;-tibble(mountains_names,height_feets,height_meters,first_climbed,summits,fatalities,fatality_rate)</code></pre>
+<pre class="r"><code>tibble(mountains_names,height_feets,height_meters,first_climbed,summits,fatalities,fatality_rate)</code></pre>
+<pre><code>## # A tibble: 5 × 7
+##   mountains_names height_feets height_meters first_climbed summits fatalities
+##   &lt;chr&gt;                  &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1 everest               29032.         8849.          1953   12800        340
+## 2 k2                    28251.         8611           1954     800         96
+## 3 kanchenjunga          28169.         8586           1955     187         50
+## 4 lhotse                27940.         8516           1956     900         30
+## 5 makalu                27838.         8485           1955     450         40
+## # ℹ 1 more variable: fatality_rate &lt;dbl&gt;</code></pre>
 <p><strong>8. Write your data frame to a .csv file called
 <code>mountains_data</code>.</strong></p>
+<pre class="r"><code>write.csv(mountains, &quot;mountains_data.csv&quot;, row.names = FALSE)</code></pre>
 <p><strong>9. Clear your environment panel by clicking on the broom
 icon. Then read in your <code>mountains_data.csv</code> file to a new
 object called <code>mountains</code>.</strong></p>
+<pre class="r"><code>mountains &lt;-read.csv(&quot;mountains_data.csv&quot;)</code></pre>
+<pre class="r"><code>mountains</code></pre>
+<pre><code>##   mountains_names height_feets height_meters first_climbed summits fatalities
+## 1         everest     29031.69       8848.86          1953   12800        340
+## 2              k2     28251.31       8611.00          1954     800         96
+## 3    kanchenjunga     28169.29       8586.00          1955     187         50
+## 4          lhotse     27939.63       8516.00          1956     900         30
+## 5          makalu     27837.93       8485.00          1955     450         40
+##   fatality_rate
+## 1    0.02656250
+## 2    0.12000000
+## 3    0.26737968
+## 4    0.03333333
+## 5    0.08888889</code></pre>
 <p><strong>10. Use a summary function of your choice to show the
 structure of your <code>mountains</code> data frame.</strong></p>
+<pre class="r"><code>str(mountains)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    5 obs. of  7 variables:
+##  $ mountains_names: chr  &quot;everest&quot; &quot;k2&quot; &quot;kanchenjunga&quot; &quot;lhotse&quot; ...
+##  $ height_feets   : num  29032 28251 28169 27940 27838
+##  $ height_meters  : num  8849 8611 8586 8516 8485
+##  $ first_climbed  : int  1953 1954 1955 1956 1955
+##  $ summits        : int  12800 800 187 900 450
+##  $ fatalities     : int  340 96 50 30 40
+##  $ fatality_rate  : num  0.0266 0.12 0.2674 0.0333 0.0889</code></pre>
 </div>
 <div id="knit-and-upload" class="section level2">
 <h2>Knit and Upload</h2>
