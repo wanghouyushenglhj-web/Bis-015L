@@ -48,7 +48,6 @@ first_climbed <- c(1953,1954,1955,1956,1955)
 
 ```{r}
 tibble(mountains_names,height_feets,height_meters,first_climbed)
-
 ```
 ```{r}
 mountains <- tibble(mountains_names,height_feets,height_meters,first_climbed)
